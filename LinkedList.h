@@ -11,6 +11,8 @@
 #define LINKEDLIST_H
 
 // Constants for book attributes
+int MAX_BOOK_TITLE_LENGTH = 256;
+int MAX_AUTHOR_NAME_LENGTH = 256;
 
 // Nodes in this linked list will represent books, they will have the following information
 // Name: The name of the book represented as a string
@@ -36,7 +38,20 @@ struct book * create_node() {
         exit(0);
     }
 
-    //new_book->name = (char *)malloc(())
+    // Allocate space for input from console
+    // 1 is added to the maximum to leave space for the end of line character '\0'
+    new_book->name = (char *)malloc((MAX_AUTHOR_NAME_LENGTH+1)*sizeof(char)); 
+    new_book->author = (char *)malloc((MAX_BOOK_TITLE_LENGTH+1)*sizeof(char));
+
+    // If heap is full, exit the program
+    if (new_book->name == NULL || new_book->author == NULL) {
+        printf("The heap is full, no new space to allocate.\n");
+        exit(0);
+    }
+
+    // Assign values to book data attributes using the console
+    // Ensure user input was correctly received
+
 }
 
 #endif
