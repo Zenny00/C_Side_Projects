@@ -169,6 +169,7 @@ void insert(struct book **head) {
     }
 }
 
+// Free all the nodes in the list
 void clear_list(struct book **head) {
     // A pointer to the head and previous node
     struct book *book_ptr = *head;
@@ -182,6 +183,7 @@ void clear_list(struct book **head) {
     }
 }
 
+// Print the contents of all the books in the list
 void print_list(struct book **head) {
     // A pointer to the head of the list
     struct book *book_ptr = *head;
@@ -192,4 +194,33 @@ void print_list(struct book **head) {
         book_ptr = book_ptr->next;
     }
 }
+
+// Find the book that has the value matching the value parameter, if none exists, don't delete anything
+void delete(struct book **head, char *value) {
+    struct book *book_ptr = *head;
+    struct book *prev_book = NULL;
+
+    // Check if the first book contains the value to be deleted
+    if (book_ptr != NULL && strcmp(book_ptr->name, value) == 0) {
+        *head = book_ptr->next;
+        free(book_ptr);
+        return;
+    }
+
+    // Check the rest of the list if the first book was not the one to be deleted
+    while (book_ptr != NULL && strcmp(book_ptr->name, value) != 0) {
+        prev_book = book_ptr;
+        book_ptr = book_ptr->next;
+    }
+
+    // The book requested to be deleted was not present in the list
+    if (book_ptr == NULL) {
+        return;
+    }
+
+    // Otherwise, remove the specified book from the list
+    prev_book->next = book_ptr->next;
+    free(book_ptr);
+}
+
 #endif
