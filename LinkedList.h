@@ -223,4 +223,24 @@ void delete(struct book **head, char *value) {
     free(book_ptr);
 }
 
+// Calculate the size of the linked list
+int get_list_length(struct book **head) {
+    struct book *book_ptr = *head;
+    
+    int size = 0;
+    
+    // Count the number of books in the list while iterating through
+    while (book_ptr != NULL) {
+        book_ptr = book_ptr->next;
+        size++;
+    }
+
+    return size;
+}
+
+// Return the height of the book stored in the list
+int get_book_height(struct book *book_ptr) {
+    return strlen(book_ptr->name) + 2; // We add two for while space on the top and bottom of the title
+}
+
 #endif
