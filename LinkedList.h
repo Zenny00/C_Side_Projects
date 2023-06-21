@@ -136,9 +136,56 @@ void print_node(struct book *book_node) {
 }
 
 // Add a node to the linked list, books are added in order of the titles, sorted in alphabetical order
-// Takes in a reference to the head of the list as an input parameter
-void insert(struct book *head) {
-    return;
+// Takes in a reference to a pointer to the head of the list as an input parameter
+void insert(struct book **head) {
+    // Create a new book and a reference to the head of the list
+    struct book *new_book = create_node();
+    struct book *book_ptr = *head;
+
+    // If the list is empty, add the book and return
+    if (book_ptr == NULL) {
+        *head = new_book;
+        return;
+    }
+
+    // While there are still nodes in the list and the name of the book is still in the correct alphabetical order
+    while (book_ptr->next != NULL && strcmp(new_book->name, book_ptr->name) < 0) {
+        book_ptr = book_ptr->next;
+    }
+
+    // Once we find the correct location we need to insert the node
+    // Check if we are at the end of the list
+    if (book_ptr->next == NULL) {
+        book_ptr->next = new_book;
+    } else {
+        // Otherwise insert into the correct location
+        struct book *tmp = book_ptr->next;
+        book_ptr->next = new_book;
+        new_book->next = tmp;
+    }
 }
 
+void clear_list(struct book **head) {
+    // A pointer to the head and previous node
+    struct book *book_ptr = *head;
+    struct book *prev_book = NULL;
+
+    // Iterate through the list and clear each node
+    while (book_ptr != NULL) {
+        prev_book = book_ptr;
+        book_ptr = book_ptr->next;
+        destroy_node(prev_book);
+    }
+}
+
+void print_list(struct book **head) {
+    // A pointer to the head of the list
+    struct book *book_ptr = *head;
+
+    // Loop through the linked list
+    while (book_ptr != NULL) {
+        print_node(book_ptr);
+        book_ptr->next;
+    }
+}
 #endif

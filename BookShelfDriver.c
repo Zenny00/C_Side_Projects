@@ -15,6 +15,14 @@ int main(int argc, char **argv) {
     print_node(book_node_1);
     destroy_node(book_node_1);
 
+    struct book *head = NULL;
+    insert(&head);
+    print_list(&head);
+    insert(&head);
+    print_list(&head);
+    insert(&head);
+    print_list(&head);
+
     // Debug log
     printf("hi\n");
     return 0;
