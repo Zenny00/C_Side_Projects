@@ -52,6 +52,27 @@ struct book * create_node() {
     // Assign values to book data attributes using the console
     // Ensure user input was correctly received
 
+    // Book title
+    printf("Please enter the name of the book: ");
+    if (scanf("%s", new_book->name) != 1) {
+        printf("Error getting user input.\n");
+        exit(0);
+    }
+
+    // Book author
+    printf("Please enter the name of the author: ");
+    if (scanf("%s", new_book->author) != 1) {
+        printf("Error getting user input.\n");
+        exit(0);
+    }
+
+    // Book date
+    printf("Please enter the year of publication: ");
+    if (scanf("%d", &new_book->date) != 1) {
+        printf("Error getting user input.\n");
+        exit(0);
+    }
+
 }
 
 #endif
