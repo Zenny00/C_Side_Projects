@@ -14,6 +14,9 @@
 int MAX_BOOK_TITLE_LENGTH = 256;
 int MAX_AUTHOR_NAME_LENGTH = 256;
 
+#define MAX_BOOK_LENGTH_S "256"
+#define MAX_AUTHOR_LENGTH_S "256"
+
 // Nodes in this linked list will represent books, they will have the following information
 // Name: The name of the book represented as a string
 // Author: The author of the book represented as a string
@@ -73,6 +76,16 @@ struct book * create_node() {
         exit(0);
     }
 
+    // Next book is initially set to nothing
+    new_book->next = NULL;
+
+    printf("The book name is %s\n", new_book->name);
+    printf("The book author is %s\n", new_book->author);
+    printf("The book publishing date is %d\n", new_book->date);
+
+    free(new_book->name);
+    free(new_book->author);
+    free(new_book);
 }
 
 #endif
