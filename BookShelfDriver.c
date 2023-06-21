@@ -5,7 +5,9 @@
 #include "LinkedList.h"
 
 int main(int argc, char **argv) {
-    create_node();
+    struct book *book_node = create_node();
+    print_node(book_node);
+    destroy_node(book_node);
     printf("hi\n");
     return 0;
 }

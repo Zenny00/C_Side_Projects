@@ -85,13 +85,22 @@ struct book * create_node() {
     // Next book is initially set to nothing
     new_book->next = NULL;
 
-    printf("The book name is %s\n", new_book->name);
-    printf("The book author is %s\n", new_book->author);
-    printf("The book publishing date is %d\n", new_book->date);
+    // Return the reference to the newly created node
+    return new_book;
+}
 
-    free(new_book->name);
-    free(new_book->author);
-    free(new_book);
+// Given a pointer to a book node, first free the memory allocated to store the data attributes then free the memory allocated to store the struct
+void destroy_node(struct book *book_node) {
+    free(book_node->name);
+    free(book_node->author);
+    free(book_node);
+}
+
+// Print the contents of the node, primarily used for debugging
+void print_node(struct book *book_node) {
+    printf("The name of the book is %s\n", book_node->name);
+    printf("The name of the author is %s\n", book_node->author);
+    printf("The date of publication is %d\n", book_node->date);
 }
 
 #endif
