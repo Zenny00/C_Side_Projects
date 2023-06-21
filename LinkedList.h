@@ -81,6 +81,9 @@ struct book * create_node() {
         exit(0);
     }
 
+    // Clear buffer
+    while ((getchar()) != '\n');
+
     // Next book is initially set to nothing
     new_book->next = NULL;
 
@@ -142,14 +145,15 @@ void insert(struct book **head) {
     struct book *new_book = create_node();
     struct book *book_ptr = *head;
 
-    // If the list is empty, add the book and return
-    if (book_ptr == NULL) {
+    // If the list is empty or the book comes before the head of the list, add the book and return
+    if (book_ptr == NULL || strcmp(new_book->name, book_ptr->name) < 0) {
+        new_book->next = *head;
         *head = new_book;
         return;
     }
 
     // While there are still nodes in the list and the name of the book is still in the correct alphabetical order
-    while (book_ptr->next != NULL && strcmp(new_book->name, book_ptr->name) < 0) {
+    while (book_ptr->next != NULL && strcmp(new_book->name, book_ptr->name) > 0) {
         book_ptr = book_ptr->next;
     }
 
@@ -185,7 +189,7 @@ void print_list(struct book **head) {
     // Loop through the linked list
     while (book_ptr != NULL) {
         print_node(book_ptr);
-        book_ptr->next;
+        book_ptr = book_ptr->next;
     }
 }
 #endif

@@ -5,6 +5,7 @@
 #include "LinkedList.h"
 
 int main(int argc, char **argv) {
+    /*
     // Create book from keyboard input
     struct book *book_node = create_node();
     print_node(book_node);
@@ -14,7 +15,7 @@ int main(int argc, char **argv) {
     struct book *book_node_1 = create_node_given_data("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 1981);
     print_node(book_node_1);
     destroy_node(book_node_1);
-
+    */
     struct book *head = NULL;
     insert(&head);
     print_list(&head);
