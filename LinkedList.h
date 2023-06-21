@@ -14,9 +14,6 @@
 int MAX_BOOK_TITLE_LENGTH = 256;
 int MAX_AUTHOR_NAME_LENGTH = 256;
 
-#define MAX_BOOK_LENGTH_S "256"
-#define MAX_AUTHOR_LENGTH_S "256"
-
 // Nodes in this linked list will represent books, they will have the following information
 // Name: The name of the book represented as a string
 // Author: The author of the book represented as a string
@@ -57,14 +54,14 @@ struct book * create_node() {
 
     // Book title
     printf("Please enter the name of the book: ");
-    if (scanf("%s", new_book->name) != 1) {
+    if (fgets(new_book->name, MAX_BOOK_TITLE_LENGTH, stdin) == NULL) {
         printf("Error getting user input.\n");
         exit(0);
     }
 
     // Book author
     printf("Please enter the name of the author: ");
-    if (scanf("%s", new_book->author) != 1) {
+    if (fgets(new_book->author, MAX_AUTHOR_NAME_LENGTH, stdin) == NULL) {
         printf("Error getting user input.\n");
         exit(0);
     }
