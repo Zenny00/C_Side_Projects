@@ -6,6 +6,7 @@
 #include <malloc.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
@@ -54,17 +55,25 @@ struct book * create_node() {
 
     // Book title
     printf("Please enter the name of the book: ");
-    if (fgets(new_book->name, MAX_BOOK_TITLE_LENGTH, stdin) == NULL) {
+    if (!fgets(new_book->name, MAX_BOOK_TITLE_LENGTH, stdin)) {
+        // Error geting user input from the console
         printf("Error getting user input.\n");
         exit(0);
     }
 
+    // Trim trailing '\n' character from the input string
+    new_book->name[strcspn(new_book->name, "\n")] = 0;
+
     // Book author
     printf("Please enter the name of the author: ");
-    if (fgets(new_book->author, MAX_AUTHOR_NAME_LENGTH, stdin) == NULL) {
+    if (!fgets(new_book->author, MAX_AUTHOR_NAME_LENGTH, stdin)) {
+        // Error geting user input from the console
         printf("Error getting user input.\n");
         exit(0);
     }
+
+    // Trim trailing '\n' character from the input string
+    new_book->author[strcspn(new_book->author, "\n")] = 0;
 
     // Book date
     printf("Please enter the year of publication: ");
